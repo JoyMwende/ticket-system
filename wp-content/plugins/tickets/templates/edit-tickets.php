@@ -5,7 +5,7 @@ if (!isset($_POST['edit_id'])) {
 // get ticket from db to edit
 
 if (isset($_POST['edit_btn'])) {
-    var_dump($_POST);
+    // var_dump($_POST);
     $id = $_POST['edit_id'];
 
     global $wpdb;
