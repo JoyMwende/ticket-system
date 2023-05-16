@@ -1,0 +1,16 @@
+{
+    "name": "joy/ticketing",
+    "description": "Week six Assessment at the Jitu",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "joy"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\":"./inc"}
+    }
+}

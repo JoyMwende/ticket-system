@@ -1,0 +1,18 @@
+{
+    "name": "user/ticket",
+    "description": "This is a register ticket plugin using composer",
+    "type": "project",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Joy"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}
