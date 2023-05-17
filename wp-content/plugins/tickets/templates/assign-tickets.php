@@ -10,12 +10,12 @@
                 <input type="text" class="form-control" id="formGroupExampleInput" name="full_name" placeholder="Enter your employee's full name">
             </div>
             <div class="form-group">
-                <label for="employee_number">Employee Number</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="employee_number" placeholder="Enter your employee number">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="formGroupExampleInput" name="email" placeholder="Enter your employee mail">
             </div>
             <div class="form-group">
-                <label for="ticket_number">Ticket Number</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" name="ticket_number" placeholder="Enter your ticket number">
+                <label for="employee_number">Employee Number</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="employee_number" placeholder="Enter your employee number">
             </div>
             <div class="form-group">
                 <label for="task_to_assign">Task to Assign</label>

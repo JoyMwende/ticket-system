@@ -16,9 +16,7 @@ final class init{
         return [
             Pages\AdminPanel::class,
             Base\Enqueue::class,
-            Pages\TicketAssign::class,
-            //Pages\TicketEdit::class
-
+            Pages\TicketAssign::class
         ];
     }
     public static function register_services(){

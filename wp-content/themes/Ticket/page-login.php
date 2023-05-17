@@ -1,30 +1,32 @@
+<?php if (is_user_logged_in()) {
+    wp_redirect(home_url());
+}?>
+
 <?php get_header(); ?>
 
 <?php
-
 /*
     Template Name: Login
 */
 ?>
 
 <?php
-if (is_user_logged_in()) {
-    wp_redirect(home_url());
-}
 
 
 $error = '';
 
-if (isset($_POST['submit'])) {
-
-    $email = $_POST['employee_number'];
+if (isset($_POST['login'])) {
+    $employee_number = $_POST['employee_number'];
     $password = $_POST['password'];
 
-    $user = wp_signon([
+    $userdata = array(
         'user_login' => $employee_number,
         'user_password' => $password
-    ]);
-
+    );
+    
+    $user = wp_signon($userdata);
+    
+    var_dump($user);
     if (!is_wp_error($user)) {
         wp_set_current_user($user->ID);
         wp_set_auth_cookie($user->ID);
@@ -43,25 +45,23 @@ if (isset($_POST['submit'])) {
             <h3 class="fw-bold">Login</h3>
         </div>
 
-
-
         <form action="" method="POST">
             <div class="form-group row g-5">
                 <label for="employee_number" class="col-sm-2 col-form-label">Employee Number</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="employee_number" placeholder="Employee Number">
+                    <input type="text" class="form-control" id="employee_number" name="employee_number" placeholder="Employee Number">
                 </div>
             </div>
             <div class="form-group row g-5">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
                 </div>
             </div>
-        </form>
-        <div class="mb-3 mt-4">
-            <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
-        </div>
+
+            <div class="mb-3 mt-4">
+                <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
+            </div>
         </form>
     </div>
 </div>
