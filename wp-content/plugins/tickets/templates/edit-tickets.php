@@ -29,7 +29,7 @@ var_dump($employee_email);
             </div>
             <div class="form-group">
                 <label for="employee_number">Employee Number</label>
-                <input type="text" class="form-control" id="employee_num" name="employee_num" value="<?php echo $ticket->employee_number ?>">
+                <input type="text" class="form-control" id="employee_num" name="employee_num" value="<?php echo $ticket->employee_number ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="task_to_assign">Task to Assign</label>

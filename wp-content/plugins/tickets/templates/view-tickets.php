@@ -19,7 +19,7 @@ if (isset($_POST['delete_btn'])) {
 $tickets = $wpdb->get_results("SELECT * FROM wp_tickets WHERE is_deleted=0");
 ?>
 
-<h2>Tickets</h2>
+<h3>Active Tickets</h3>
 <div>
 
     <table class="table table-striped">
@@ -71,8 +71,8 @@ global $wpdb;
 
 $table = $wpdb->prefix . 'tickets';
 
-if (isset($_POST['restore_btn'])) {
-    $id = $_POST['restore_id'];
+if (isset($_POST['delete_btn'])) {
+    $id = $_POST['delete_id'];
 
 
     $result = $wpdb->query("UPDATE $table SET is_deleted=0 WHERE id=$id");
@@ -81,11 +81,11 @@ if (isset($_POST['restore_btn'])) {
         $error = "Error restoring ticket";
     }
 }
-$deleted_tickets = $wpdb->get_results("SELECT * FROM wp_tickets WHERE is_deleted=1");
+$done_tickets = $wpdb->get_results("SELECT * FROM wp_tickets WHERE status=1");
 
 ?>
 
-<h2>Deleted Tickets</h2>
+<h3>Done Tickets</h3>
 <div>
     <table class="table table-striped">
         <tr>
@@ -98,17 +98,17 @@ $deleted_tickets = $wpdb->get_results("SELECT * FROM wp_tickets WHERE is_deleted
 
         </tr>
         <?php
-        foreach ($deleted_tickets as $deleted_ticket) {
+        foreach ($done_tickets as $done_ticket) {
         ?>
 
             <tr>
-                <td><?php echo $deleted_ticket->full_name ?></td>
-                <td><?php echo $deleted_ticket->email ?></td>
-                <td><?php echo $deleted_ticket->employee_number ?></td>
-                <td><?php echo $deleted_ticket->task_to_assign ?></td>
+                <td><?php echo $done_ticket->full_name ?></td>
+                <td><?php echo $done_ticket->email ?></td>
+                <td><?php echo $done_ticket->employee_number ?></td>
+                <td><?php echo $done_ticket->task_to_assign ?></td>
                 <td>
                     <form action="" method="post">
-                        <a class="btn btn-success" role="button" href="<?php esc_url(add_query_arg('email', $deleted_ticket->email, '')) ?>">Edit</a>
+                        <a class="btn btn-success" role="button" href="<?php esc_url(add_query_arg('email', $done_ticket->email, '')) ?>">Edit</a>
                     </form>
                     <!-- <form action="/Ticket%20System/wp-admin/admin.php?page=tickets_menu" method="POST">
                         <input type="hidden" name="edit_id" value="<?php //echo $ticket->id; 
@@ -118,8 +118,8 @@ $deleted_tickets = $wpdb->get_results("SELECT * FROM wp_tickets WHERE is_deleted
                 </td>
                 <td>
                     <form action="" method="POST">
-                        <input type="hidden" name="restore_id" value="<?php echo $ticket->id; ?>">
-                        <button type="submit" name="restore_btn" class="btn btn-danger">Restore</button>
+                        <input type="hidden" name="delete_id" value="<?php echo $ticket->id; ?>">
+                        <button type="submit" name="delete_btn" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>

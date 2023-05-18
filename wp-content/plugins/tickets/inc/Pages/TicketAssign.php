@@ -51,41 +51,48 @@ class TicketAssign
 
             $table = $wpdb->prefix . 'tickets';
 
-            $answ = $wpdb->insert($table, $info, $format = NULL);
-
-            if ($answ == true) {
-                echo "<script> alert('Ticket Added successfully');</script>";
-
-                $info['full_name'] = '';
-                $info['email'] = '';
-                $info['emloyee_number'] = '';
-                $info['task_to_assign'] = '';
+            //check if user has been assigned
+            $assignedTask = $wpdb->get_row("SELECT * FROM $table WHERE email = '{$_POST['email']}' AND status = 1");
+            if ($assignedTask) {
+                echo "<script>alert('Employee has been assigned another task')</script>";
             } else {
-                echo "<script>alert('Ticket not assigned!');</script>";
+                $answ = $wpdb->insert($table, $info, $format = NULL);
+
+                if ($answ == true) {
+                    echo "<script> alert('Ticket Added successfully');</script>";
+
+                    $info['full_name'] = '';
+                    $info['email'] = '';
+                    $info['emloyee_number'] = '';
+                    $info['task_to_assign'] = '';
+                } else {
+                    echo "<script>alert('Ticket not assigned!');</script>";
+                }
             }
         }
         // wp_redirect('/Ticket%20System/wp-admin/admin.php?page=tickets');
     }
 
-    function editTicket(){
-        if (isset($_POST['update_form'])){
+    function editTicket()
+    {
+        if (isset($_POST['update_form'])) {
             global $wpdb;
 
             $new_ticket_data = [
-                'full_name'=>$_POST['fullname'],
-                'email'=>$_POST['emailnew'],
-                'employee_number'=>$_POST['employee_num'],
-                'task_to_assign'=>$_POST['task_assigned'],
+                'full_name' => $_POST['fullname'],
+                'email' => $_POST['emailnew'],
+                'employee_number' => $_POST['employee_num'],
+                'task_to_assign' => $_POST['task_assigned'],
             ];
-            
-            $table = $wpdb->prefix. 'tickets';
+
+            $table = $wpdb->prefix . 'tickets';
 
             $employee_email = $_GET['employee_email'];
-             $condition = ['email'=>$employee_email];
+            $condition = ['email' => $employee_email];
 
             $result = $wpdb->update($table, $new_ticket_data, $condition);
 
-            if ($result){
+            if ($result) {
                 echo "<script>alert('Ticket updated successfully!')</script>";
             } else {
                 echo "<script>alert('Ticket not updated!')</script>";
@@ -101,7 +108,7 @@ class TicketAssign
 
             $new_status = [
                 'status' => 1,
-               
+
             ];
 
             $table = $wpdb->prefix . 'tickets';
@@ -118,6 +125,4 @@ class TicketAssign
             }
         }
     }
-
-    
 }

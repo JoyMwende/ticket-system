@@ -1,6 +1,13 @@
 <?php if (is_user_logged_in()) {
     wp_redirect(home_url());
-}?>
+}
+
+
+if (isset($_POST['login'])) {
+    wp_redirect('http://localhost/Ticket%20System/index.php/tickets/');
+    exit;
+}
+?>
 
 <?php get_header(); ?>
 
@@ -23,9 +30,9 @@ if (isset($_POST['login'])) {
         'user_login' => $employee_number,
         'user_password' => $password
     );
-    
+
     $user = wp_signon($userdata);
-    
+
     var_dump($user);
     if (!is_wp_error($user)) {
         wp_set_current_user($user->ID);
@@ -39,8 +46,8 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-<div class="bg-light pt-4 ps-4 d-flex align-items-center justify-content-center">
-    <div class="bg-light rounded pt-4 pb-3 pe-3 ps-3 d-flex flex-column justify-content-center align-items-center shadow-sm rounded-1 border mb-4 me-4">
+<div class="bg-white pt-4 ps-4 d-flex align-items-center justify-content-center" style="margin-top: -2%;">
+    <div class="bg-light rounded pt-4 pb-3 pe-3 ps-3 d-flex flex-column justify-content-center align-items-center shadow-sm rounded-1 border mb-4 me-4 mt-5">
         <div class="mx-auto text-center mb-3">
             <h3 class="fw-bold">Login</h3>
         </div>

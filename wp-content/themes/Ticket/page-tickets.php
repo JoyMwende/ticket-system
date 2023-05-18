@@ -31,12 +31,12 @@ if (isset($_POST['btn'])) {
 <?php
 if (!empty($tickets)) {
 ?>
-    <div class="bg-light m-0 p-0 w-100">
-        <div class="w-75 shadow-sm p-4 m-auto mt-5">
+    <div class="bg-white m-0 p-0 w-100">
+        <div class="w-75 shadow-sm p-4 m-auto mt-5 bg-light">
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">Employee Number</th>
                         <th scope="col">Task Assigned</th>
                         <th scope="col">Status</th>
                     </tr>
@@ -57,7 +57,7 @@ if (!empty($tickets)) {
                                 ?>
                                 <form action="" method="post">
                                     <input type="hidden" name="employee_email" value="<?php echo $rowData->email ?>">
-                                    <button type="submit" name="<?php echo $rowData->status == 0 ? 'update_status_done' : ''; ?>" value="<?php echo $rowData->task_to_assign; ?>" class="<?php echo $rowData->status == 0 ? 'btn btn-primary' : 'btn btn-success'; ?>"><?php echo $buttonText; ?></button>
+                                    <button type="submit" name="<?php echo $rowData->status == 0 ? 'update_status_done' : ''; ?>" value="<?php echo $rowData->task_to_assign; ?>" class="<?php echo $rowData->status == 0 ? 'btn btn-primary' : 'btn btn-success'; ?>"><?php echo $rowData->status == 0 ? 'Mark as Done' : 'Done'; ?></button>
                                 </form>
                             </td>
                         </tr>

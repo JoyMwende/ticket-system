@@ -1,6 +1,11 @@
 <?php if (is_user_logged_in()) {
     wp_redirect(home_url());
 }
+
+if (isset($_POST['signbtn'])){
+    wp_redirect('http://localhost/Ticket%20System/index.php/login/');
+    exit;
+}
  ?>
 
 <?php get_header(); ?>
@@ -57,8 +62,8 @@ if (isset($_POST['signbtn'])) {
 }
 ?>
 
-<div class="bg-light">
-    <div class="w-50 m-auto p-4">
+<div class="bg-white" style="margin-top: -2%;">
+    <div class="w-50 m-auto p-4 shadow-small bg-light round-1 rounded border mt-5">
         <div class="mx-auto text-center mb-3">
             <h3 class="fw-bold">Signup</h3>
         </div>
