@@ -48,6 +48,11 @@ class TicketAssign
             ];
 
             global $wpdb;
+            global $successmessage;
+            global $errormessage;
+
+            $successmessage = false;
+            $errormessage = false;
 
             $table = $wpdb->prefix . 'tickets';
 
@@ -59,14 +64,14 @@ class TicketAssign
                 $answ = $wpdb->insert($table, $info, $format = NULL);
 
                 if ($answ == true) {
-                    echo "<script> alert('Ticket Added successfully');</script>";
+                    $successmessage = true;
 
                     $info['full_name'] = '';
                     $info['email'] = '';
                     $info['emloyee_number'] = '';
                     $info['task_to_assign'] = '';
                 } else {
-                    echo "<script>alert('Ticket not assigned!');</script>";
+                    $errormessage = true;
                 }
             }
         }
@@ -77,6 +82,12 @@ class TicketAssign
     {
         if (isset($_POST['update_form'])) {
             global $wpdb;
+            global $successmessage;
+            global $errormessage;
+
+            $successmessage = false;
+            $errormessage = false;
+
 
             $new_ticket_data = [
                 'full_name' => $_POST['fullname'],
@@ -93,9 +104,9 @@ class TicketAssign
             $result = $wpdb->update($table, $new_ticket_data, $condition);
 
             if ($result) {
-                echo "<script>alert('Ticket updated successfully!')</script>";
+                $successmessage = true;
             } else {
-                echo "<script>alert('Ticket not updated!')</script>";
+                $errormessage == true;
             }
         }
     }

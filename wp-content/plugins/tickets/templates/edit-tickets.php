@@ -1,19 +1,63 @@
 <?php
 
 global $wpdb;
+global $successmessage;
+$successmessage;
+
+global $errormessage;
+
+
 $table = $wpdb->prefix . 'tickets';
 
 $employee_email = $_GET['employee_email'];
 var_dump($employee_email);
 
-    // Retrieve the form data from the database
-    $ticket = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE email = '$employee_email'"));
+// Retrieve the form data from the database
+$ticket = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE email = '$employee_email'"));
 
 ?>
 
 
 <div class="bg-light">
     <div class="w-50 m-auto p-4">
+        <!-- success message -->
+        <?php
+        echo '<div class="alert alert-success" role="alert" id="successmsg">
+                Ticket updated Successfully
+             </div>';
+
+        echo '<script> document.getElementById("successmsg").style.display = "none"; </script>';
+
+        if ($successmessage == true) {
+            echo '<script> document.getElementById("successmsg").style.display = "flex"; </script>';
+
+            echo    '<script> 
+                        setTimeout(function(){
+                            document.getElementById("successmsg").style.display ="none";
+                        }, 3000);
+                    </script>';
+        }
+
+        ?>
+
+        <!-- error message -->
+        <?php
+        echo '<div class="alert alert-danger" role="alert" id="errormsg">
+               Unable to update ticket, an error occured
+             </div>';
+
+        echo '<script> document.getElementById("errormsg").style.display = "none"; </script>';
+
+        if ($errormessage == true) {
+            echo '<script> document.getElementById("errormsg").style.display = "flex"; </script>';
+
+            echo    '<script> 
+                        setTimeout(function(){
+                            document.getElementById("errormsg").style.display ="none";
+                        }, 3000);
+                    </script>';
+        }
+        ?>
         <div class="mx-auto text-center mb-3">
             <h3 class="fw-bold"> Edit Ticket Form</h3>
         </div>

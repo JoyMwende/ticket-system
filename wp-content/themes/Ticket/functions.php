@@ -27,3 +27,10 @@ if (!file_exists(get_template_directory() . '/class-wp-bootstrap-navwalker.php')
 }
 
 add_action('init', 'tickettheme_setup');
+
+
+global $successmessage;
+$successmessage;
+
+global $errormessage;
+$errormessage;

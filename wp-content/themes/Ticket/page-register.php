@@ -1,11 +1,6 @@
 <?php if (is_user_logged_in()) {
     wp_redirect(home_url());
 }
-
-if (isset($_POST['signbtn'])){
-    wp_redirect('http://localhost/Ticket%20System/index.php/login/');
-    exit;
-}
  ?>
 
 <?php get_header(); ?>
@@ -25,12 +20,12 @@ if (isset($_POST['signbtn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Retrieve user count
+    // Retrieve user
     $user_count = count_users();
     $users_total = $user_count['total_users'];
 
     $employee_data = array(
-        'user_login' => "Staff" . ($users_total + 1), // Append count to "J"
+        'user_login' => "Staff" . ($users_total + 1),
         'user_full_name' => $fullname,
         'user_email' => $email,
         'user_pass' => $password,
